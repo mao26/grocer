@@ -7,6 +7,15 @@
   
   <!-- REQUIRED FOR GENERAL APP FUNCTIONALITY - YOU MAY WANT TO KEEP THESE -->
 
+  <string-array name="drawer_menu">
+    <item>AWS Resources</item>
+    <item>Logout</item>
+    <item>Recipe Lobby</item>
+    <item>Random2</item>
+    <item>Random3</item>
+  </string-array>
+
+
   <string name="main_nav_menu_item_home">Home</string>
   <string name="title_activity_item_detail">Item Detail</string>
   <string name="title_activity_item_list">Item List</string>
@@ -118,4 +127,6 @@
   <string name="cloud_logic_invoke">INVOKE</string>
   <string name="cloud_logic_error_title">Error</string>
   <string name="cloud_logic_error_dismiss">Dismiss</string>
+  <string name="drawer_open">Open</string>
+  <string name="drawer_closer">Close</string>
 </resources>
