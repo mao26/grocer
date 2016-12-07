@@ -4,16 +4,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -61,33 +57,8 @@ class ImageAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-//        ImageView imageView;
-        RecyclerView.ViewHolder holder;
+        ImageView imageView;
 
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.menu_item, null);
-            holder = new ViewHolder();
-            holder.iv = (ImageButton) ctView.findViewById(R.id.menuItem_txt);
-            convertView.setTag(holder);
-        } else {
-            holder = (RecyclerView.ViewHolder) convertView.getTag();
-        }
-
-
-        holder.b.setBackgroundColor(back_color[position]);
-        holder.tv.setText(menuValues[position]);
-        holder.tv.setTextColor(txt_color[position]);
-        holder.tv.setTypeface(font);
-
-        holder.iv.setScaleType(ImageButton.ScaleType.CENTER_CROP);
-        holder.iv.setFocusable(false);
-        holder.iv.setClickable(false);
-        holder.iv.setAdjustViewBounds(true);
-        holder.iv.setColorFilter(img_color[position]);
-        holder.iv.setImageResource(img[position]);
-
-
-        return convertView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
