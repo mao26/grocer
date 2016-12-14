@@ -35,9 +35,11 @@
         <activity android:name=".UserProfile"
                   android:parentActivityName=".Lobby"/>
         <activity android:name=".RecipeLobby"
-                  android:parentActivityName=".Lobby"/>
+                  android:parentActivityName=".BundlesLobby"/>
         <activity android:name=".RecipeActivity"
                   android:parentActivityName=".RecipeLobby"/>
+        <activity android:name=".BundlesLobby"
+                  android:parentActivityName=".Lobby"/>
 
         <activity
             android:name=".SplashActivity"

@@ -10,10 +10,14 @@ public class Recipe implements Serializable {
 
     private String mTitle;
     private String[] mIngredients;
+    private Integer[] ingThumbnails;
+    private Integer recipeThumbnail;
 
-    public Recipe(String title, String[] ingredients){
+    public Recipe(String title, Integer recipeThumbnail, String[] ingredients, Integer[] ingThumbnails){
         mTitle = title;
         mIngredients = ingredients;
+        this.ingThumbnails = ingThumbnails;
+        this.recipeThumbnail = recipeThumbnail;
     }
 
     public String getTitle() {
@@ -23,4 +27,13 @@ public class Recipe implements Serializable {
     public String[] getIngredients() {
         return mIngredients;
     }
+
+    public Integer[] getThumbnails(){
+        return ingThumbnails;
+    }
+
+    public Integer getRecipeThumbnail(){
+        return recipeThumbnail;
+    }
+
 }

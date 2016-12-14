@@ -60,7 +60,7 @@ public class Lobby extends AppCompatActivity {
         emptyFridgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Lobby.this, RecipeLobby.class));
+                startActivity(new Intent(Lobby.this, BundlesLobby.class));
             }
         });
     }

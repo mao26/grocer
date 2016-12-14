@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /** Class name for log messages. */
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    /** Bundle key for saving/restoring the toolbar title. */
+    /** OneBundle key for saving/restoring the toolbar title. */
     private static final String BUNDLE_KEY_TOOLBAR_TITLE = "title";
 
     /** The identity manager used to keep track of the current user account. */
