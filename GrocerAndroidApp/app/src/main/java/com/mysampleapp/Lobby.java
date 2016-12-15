@@ -1,6 +1,8 @@
 package com.mysampleapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,6 +29,7 @@ import com.amazonaws.mobile.user.IdentityManager;
 
 public class Lobby extends AppCompatActivity {
 
+    private static final String LOG_TAG = Lobby.class.getSimpleName();
     private String[] mMonths;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -63,6 +67,10 @@ public class Lobby extends AppCompatActivity {
                 startActivity(new Intent(Lobby.this, BundlesLobby.class));
             }
         });
+
+        SharedPreferences sharedPref = Lobby.this.getPreferences(Context.MODE_PRIVATE);
+        String value = sharedPref.getString("Recipe", "empty");
+        Log.i(LOG_TAG, value);
     }
 
     private void setUpActivityDrawer(Toolbar myToolbar) {

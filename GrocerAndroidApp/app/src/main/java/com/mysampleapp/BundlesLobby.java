@@ -1,17 +1,21 @@
 package com.mysampleapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,8 +25,10 @@ import java.util.List;
 
 public class BundlesLobby extends AppCompatActivity {
 
+    private static final String LOG_TAG = BundlesLobby.class.getSimpleName();
     private BundlesAdapter mBundlesAdapter;
     private static final String BUNDLE = "bundle";
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,17 +46,40 @@ public class BundlesLobby extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        SharedPreferences sharedPref = BundlesLobby.this.getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
     }
 
     private class BundlesHolder extends RecyclerView.ViewHolder {
 
         public TextView mTitleTextView;
-        private List<Recipe> currRecipeList;
         private OneBundle currBundle;
+        private ImageView fridgeLikeButton;
+        private boolean fridgeIconOn = false;
 
         public BundlesHolder(View itemView) {
             super(itemView);
             mTitleTextView = (TextView) itemView.findViewById(R.id.recipeview_title_textview);
+            fridgeLikeButton = (ImageView) itemView.findViewById(R.id.add_to_fridge_icon);
+            fridgeLikeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    Toast.makeText(getApplicationContext(), "fridge button", Toast.LENGTH_LONG);
+                    Log.i(LOG_TAG, "fridge button");
+                    if(fridgeIconOn){
+                        fridgeLikeButton.setImageResource(R.mipmap.heart_icon_off);
+                        fridgeIconOn = false;
+                    } else {
+                        fridgeLikeButton.setImageResource(R.mipmap.heart_on_icon);
+                        fridgeIconOn = true;
+//                        editor.putStringSet("Recipe", newHighScore);
+                        editor.putString("Recipe", mTitleTextView.getText().toString());
+                        editor.commit();
+                    }
+                }
+            });
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -69,7 +98,6 @@ public class BundlesLobby extends AppCompatActivity {
 
         public void bindView(OneBundle bundle) {
             currBundle = bundle;
-            this.currRecipeList = bundle.getRecipes();
             mTitleTextView.setText(bundle.getTitle());
         }
     }

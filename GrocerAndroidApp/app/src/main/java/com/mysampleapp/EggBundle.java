@@ -50,7 +50,7 @@ public class EggBundle extends OneBundle {
             R.mipmap.salt_tn, R.mipmap.water_tn,
     };
 
-    private String[] ingredients = {"Egg", "Milk", "Salt", "Olive Oil", "Water", "Butter"};
+    private String[] ingredients = {"Egg", "Butter", "Milk", "Olive Oil", "Salt", "Water"};
 
     private List<Recipe> createEggsPackage(){
         List<Recipe> onePackage_Basics = new ArrayList<>();
