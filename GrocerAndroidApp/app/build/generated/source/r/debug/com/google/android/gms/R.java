@@ -23,8 +23,8 @@ public final class R {
 		public static final int common_signin_btn_light_text_disabled = 0x7f0a002c;
 		public static final int common_signin_btn_light_text_focused = 0x7f0a002d;
 		public static final int common_signin_btn_light_text_pressed = 0x7f0a002e;
-		public static final int common_signin_btn_text_dark = 0x7f0a007b;
-		public static final int common_signin_btn_text_light = 0x7f0a007c;
+		public static final int common_signin_btn_text_dark = 0x7f0a0085;
+		public static final int common_signin_btn_text_light = 0x7f0a0086;
 	}
 	public static final class drawable {
 		public static final int common_full_open_on_phone = 0x7f020066;
@@ -53,10 +53,10 @@ public final class R {
 		public static final int common_signin_btn_text_normal_light = 0x7f02007d;
 		public static final int common_signin_btn_text_pressed_dark = 0x7f02007e;
 		public static final int common_signin_btn_text_pressed_light = 0x7f02007f;
-		public static final int ic_plusone_medium_off_client = 0x7f020080;
-		public static final int ic_plusone_small_off_client = 0x7f020081;
-		public static final int ic_plusone_standard_off_client = 0x7f020082;
-		public static final int ic_plusone_tall_off_client = 0x7f020083;
+		public static final int ic_plusone_medium_off_client = 0x7f020081;
+		public static final int ic_plusone_small_off_client = 0x7f020082;
+		public static final int ic_plusone_standard_off_client = 0x7f020083;
+		public static final int ic_plusone_tall_off_client = 0x7f020084;
 	}
 	public static final class id {
 		public static final int adjust_height = 0x7f0c001e;
@@ -71,8 +71,8 @@ public final class R {
 	public static final class raw {
 	}
 	public static final class string {
-		public static final int auth_google_play_services_client_facebook_display_name = 0x7f060054;
-		public static final int auth_google_play_services_client_google_display_name = 0x7f060055;
+		public static final int auth_google_play_services_client_facebook_display_name = 0x7f06009a;
+		public static final int auth_google_play_services_client_google_display_name = 0x7f06009b;
 		public static final int common_android_wear_notification_needs_update_text = 0x7f060023;
 		public static final int common_android_wear_update_text = 0x7f060024;
 		public static final int common_android_wear_update_title = 0x7f060025;

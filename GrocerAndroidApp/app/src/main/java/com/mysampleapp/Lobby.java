@@ -23,6 +23,8 @@ import android.widget.ListView;
 import com.amazonaws.mobile.AWSMobileClient;
 import com.amazonaws.mobile.user.IdentityManager;
 
+import java.util.HashSet;
+
 /**
  * Created by mario_oliver93 on 12/3/16.
  */
@@ -68,9 +70,10 @@ public class Lobby extends AppCompatActivity {
             }
         });
 
-        SharedPreferences sharedPref = Lobby.this.getPreferences(Context.MODE_PRIVATE);
-        String value = sharedPref.getString("Recipe", "empty");
-        Log.i(LOG_TAG, value);
+        SharedPreferences sharedPref = Lobby.this.getSharedPreferences("Personal recipes", Context.MODE_PRIVATE);
+        HashSet<String> random = new HashSet<>();
+        HashSet value = (HashSet) sharedPref.getStringSet("recipeSets", random);
+        Log.i(LOG_TAG, value.toString());
     }
 
     private void setUpActivityDrawer(Toolbar myToolbar) {

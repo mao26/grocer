@@ -147,11 +147,20 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/mario_oliver93/Documents/Grocer/GrocerAndroidApp/app/build/intermediates/exploded-aar/net.hockeyapp.android/HockeySDK/4.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="15b36d97be93c4b8d71c26b44dd86bd52fdcbed9">
+        <dex dex="/Users/mario_oliver93/Documents/Grocer/GrocerAndroidApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/net.hockeyapp.android-HockeySDK-4.1.1_caded722ee5fcf746152346f8e85832f0e5b28da/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/mario_oliver93/Documents/Grocer/GrocerAndroidApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="ca50773ed2842f2fa59f191236d0e2d225abac0a">
+        sha1="dcb0ab0908a8bca79259c8a998f9194e056b2a1f">
         <dex dex="/Users/mario_oliver93/Documents/Grocer/GrocerAndroidApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c89144571577d2183080c35ad1d8436ffced19e9/classes.dex" />
     </item>
     <item
@@ -331,7 +340,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="cc24b9a7c31f096d918894657acb7581fc2a40aa">
+        sha1="83473c5ef49179d11d4f77833feda0f76051743d">
         <dex dex="/Users/mario_oliver93/Documents/Grocer/GrocerAndroidApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_7748fbe385984253023f2bb22480287ae890c92c/classes.dex" />
     </item>
     <item

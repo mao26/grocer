@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ public class BundlesLobby extends AppCompatActivity {
     private BundlesAdapter mBundlesAdapter;
     private static final String BUNDLE = "bundle";
     private SharedPreferences.Editor editor;
+    private HashSet<String> recipeSets;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,9 +49,29 @@ public class BundlesLobby extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        SharedPreferences sharedPref = BundlesLobby.this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = BundlesLobby.this.getSharedPreferences("Personal recipes", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
+
+//        String value = sharedPref.getString("Recipe", "empty");
+//        Log.i(LOG_TAG, value);
+
+        HashSet random = (HashSet) new HashSet<String>();
+        recipeSets = (HashSet) sharedPref.getStringSet("recipeSets", random);
+        if(recipeSets == null) recipeSets = new HashSet();
+        Log.i(LOG_TAG, recipeSets.toString());
+
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(LOG_TAG, "onPause");
+        Log.i(LOG_TAG, "recipe sets is : " + recipeSets.toString());
+        editor.putStringSet("recipeSets", recipeSets);
+        editor.commit();
+    }
+
+
 
     private class BundlesHolder extends RecyclerView.ViewHolder {
 
@@ -65,18 +87,17 @@ public class BundlesLobby extends AppCompatActivity {
             fridgeLikeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    Toast.makeText(getApplicationContext(), "fridge button", Toast.LENGTH_LONG);
-                    Log.i(LOG_TAG, "fridge button");
                     if(fridgeIconOn){
-                        fridgeLikeButton.setImageResource(R.mipmap.heart_icon_off);
+                        fridgeLikeButton.setImageResource(R.mipmap.fridge_icon_off);
                         fridgeIconOn = false;
+                        recipeSets.remove(mTitleTextView.getText().toString());
                     } else {
-                        fridgeLikeButton.setImageResource(R.mipmap.heart_on_icon);
+                        fridgeLikeButton.setImageResource(R.mipmap.fridge_icon_on);
                         fridgeIconOn = true;
 //                        editor.putStringSet("Recipe", newHighScore);
-                        editor.putString("Recipe", mTitleTextView.getText().toString());
-                        editor.commit();
+                        recipeSets.add(mTitleTextView.getText().toString());
                     }
+                    Log.i(LOG_TAG, recipeSets.toString());
                 }
             });
 
@@ -99,6 +120,13 @@ public class BundlesLobby extends AppCompatActivity {
         public void bindView(OneBundle bundle) {
             currBundle = bundle;
             mTitleTextView.setText(bundle.getTitle());
+            for(String recipe: recipeSets){
+                Log.i(LOG_TAG, "current reciple in list: " + recipe + "title : " + mTitleTextView.getText().toString());
+                if(recipe.equals(mTitleTextView.getText().toString())){
+                    fridgeLikeButton.setImageResource(R.mipmap.fridge_icon_on);
+                    fridgeIconOn = true;
+                }
+            }
         }
     }
 
