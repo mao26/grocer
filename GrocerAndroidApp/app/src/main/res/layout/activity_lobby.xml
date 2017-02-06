@@ -24,8 +24,9 @@
 
         <!-- The main content view -->
         <LinearLayout
+            android:id="@+id/lets_add_fridge_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
@@ -45,10 +46,19 @@
                 android:id="@+id/empty_fridge_button"
                 android:text="Let's add!"
                 />
+
+
         </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lobby_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+        </android.support.v7.widget.RecyclerView>
         <!-- The navigation drawer -->
         <ListView
-            android:id="@+id/left_drawer"
+            android:id="@android:id/list"
             android:layout_width="240dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"

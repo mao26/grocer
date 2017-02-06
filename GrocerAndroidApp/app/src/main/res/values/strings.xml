@@ -8,11 +8,11 @@
   <!-- REQUIRED FOR GENERAL APP FUNCTIONALITY - YOU MAY WANT TO KEEP THESE -->
 
   <string-array name="drawer_menu">
-    <item>AWS Resources</item>
     <item>Logout</item>
-    <item>Recipe Lobby</item>
-    <item>Random2</item>
-    <item>Random3</item>
+    <item>Bundles Lobby</item>
+    <item>Terms and Conditions</item>
+    <item>About Us</item>
+    <item>AWS Resources - Dev tools</item>
   </string-array>
 
 

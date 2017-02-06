@@ -20,45 +20,45 @@ public final class R {
 		public static final int hockeyapp_text_white = 0x7f0a0041;
 	}
 	public static final class drawable {
-		public static final int hockeyapp_btn_background = 0x7f020080;
+		public static final int hockeyapp_btn_background = 0x7f020083;
 	}
 	public static final class id {
-		public static final int button_add_response = 0x7f0c00f2;
-		public static final int button_attachment = 0x7f0c00ed;
-		public static final int button_login = 0x7f0c00f7;
-		public static final int button_refresh = 0x7f0c00f3;
-		public static final int button_send = 0x7f0c00ee;
-		public static final int button_update = 0x7f0c00fb;
-		public static final int input_email = 0x7f0c00e9;
-		public static final int input_message = 0x7f0c00eb;
-		public static final int input_name = 0x7f0c00e8;
-		public static final int input_password = 0x7f0c00f6;
-		public static final int input_subject = 0x7f0c00ea;
-		public static final int label_author = 0x7f0c00fd;
-		public static final int label_date = 0x7f0c00fe;
-		public static final int label_last_updated = 0x7f0c00f0;
-		public static final int label_message = 0x7f0c00e5;
-		public static final int label_text = 0x7f0c00ff;
-		public static final int label_title = 0x7f0c00f9;
-		public static final int label_version = 0x7f0c00fa;
-		public static final int list_attachments = 0x7f0c0100;
-		public static final int list_feedback_messages = 0x7f0c00f4;
-		public static final int text_headline = 0x7f0c00f5;
-		public static final int view_header = 0x7f0c00f8;
-		public static final int web_update_details = 0x7f0c00fc;
-		public static final int wrapper_attachments = 0x7f0c00ec;
-		public static final int wrapper_feedback = 0x7f0c00e7;
-		public static final int wrapper_feedback_scroll = 0x7f0c00e6;
-		public static final int wrapper_messages = 0x7f0c00ef;
-		public static final int wrapper_messages_buttons = 0x7f0c00f1;
+		public static final int button_add_response = 0x7f0c00f5;
+		public static final int button_attachment = 0x7f0c00f0;
+		public static final int button_login = 0x7f0c00fa;
+		public static final int button_refresh = 0x7f0c00f6;
+		public static final int button_send = 0x7f0c00f1;
+		public static final int button_update = 0x7f0c00fe;
+		public static final int input_email = 0x7f0c00ec;
+		public static final int input_message = 0x7f0c00ee;
+		public static final int input_name = 0x7f0c00eb;
+		public static final int input_password = 0x7f0c00f9;
+		public static final int input_subject = 0x7f0c00ed;
+		public static final int label_author = 0x7f0c0100;
+		public static final int label_date = 0x7f0c0101;
+		public static final int label_last_updated = 0x7f0c00f3;
+		public static final int label_message = 0x7f0c00e8;
+		public static final int label_text = 0x7f0c0102;
+		public static final int label_title = 0x7f0c00fc;
+		public static final int label_version = 0x7f0c00fd;
+		public static final int list_attachments = 0x7f0c0103;
+		public static final int list_feedback_messages = 0x7f0c00f7;
+		public static final int text_headline = 0x7f0c00f8;
+		public static final int view_header = 0x7f0c00fb;
+		public static final int web_update_details = 0x7f0c00ff;
+		public static final int wrapper_attachments = 0x7f0c00ef;
+		public static final int wrapper_feedback = 0x7f0c00ea;
+		public static final int wrapper_feedback_scroll = 0x7f0c00e9;
+		public static final int wrapper_messages = 0x7f0c00f2;
+		public static final int wrapper_messages_buttons = 0x7f0c00f4;
 	}
 	public static final class layout {
-		public static final int hockeyapp_activity_expiry_info = 0x7f040031;
-		public static final int hockeyapp_activity_feedback = 0x7f040032;
-		public static final int hockeyapp_activity_login = 0x7f040033;
-		public static final int hockeyapp_activity_update = 0x7f040034;
-		public static final int hockeyapp_fragment_update = 0x7f040035;
-		public static final int hockeyapp_view_feedback_message = 0x7f040036;
+		public static final int hockeyapp_activity_expiry_info = 0x7f040033;
+		public static final int hockeyapp_activity_feedback = 0x7f040034;
+		public static final int hockeyapp_activity_login = 0x7f040035;
+		public static final int hockeyapp_activity_update = 0x7f040036;
+		public static final int hockeyapp_fragment_update = 0x7f040037;
+		public static final int hockeyapp_view_feedback_message = 0x7f040038;
 	}
 	public static final class string {
 		public static final int hockeyapp_crash_dialog_app_name_fallback = 0x7f060046;

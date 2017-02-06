@@ -9,21 +9,31 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.amazonaws.mobile.AWSMobileClient;
 import com.amazonaws.mobile.user.IdentityManager;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by mario_oliver93 on 12/3/16.
@@ -38,6 +48,8 @@ public class Lobby extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mTitle = "QC";
     private String mDrawerTitle = "Drawer";
+    private HashSet<String> recipeSets;
+    private static final String BUNDLE = "bundle";
 
     /** The identity manager used to keep track of the current user account. */
     private IdentityManager identityManager;
@@ -74,12 +86,114 @@ public class Lobby extends AppCompatActivity {
         HashSet<String> random = new HashSet<>();
         HashSet value = (HashSet) sharedPref.getStringSet("recipeSets", random);
         Log.i(LOG_TAG, value.toString());
+
+        LinearLayout fridgeAddContainer = (LinearLayout) findViewById(R.id.lets_add_fridge_container);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lobby_list_view);
+        recipeSets = (HashSet) sharedPref.getStringSet("recipeSets", random);
+        if(recipeSets.size() > 0){
+            recyclerView.setVisibility(View.VISIBLE);
+            fridgeAddContainer.setVisibility(View.GONE);
+        } else{
+            recyclerView.setVisibility(View.GONE);
+            fridgeAddContainer.setVisibility(View.VISIBLE);
+        }
+        //this logic needs to get changed
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        BundlesLab bundlesController = new BundlesLab(getApplicationContext(), new ArrayList<String>(recipeSets));
+        List<OneBundle> bundlesList = bundlesController.getBundles();
+        BundlesAdapter mBundlesAdapter = new BundlesAdapter(bundlesList);
+        recyclerView.setAdapter(mBundlesAdapter);
+    }
+
+    private class BundlesHolder extends RecyclerView.ViewHolder {
+
+        public TextView mTitleTextView;
+        private OneBundle currBundle;
+        private ImageView fridgeLikeButton;
+        private boolean fridgeIconOn = false;
+
+        public BundlesHolder(View itemView) {
+            super(itemView);
+            mTitleTextView = (TextView) itemView.findViewById(R.id.recipeview_title_textview);
+            fridgeLikeButton = (ImageView) itemView.findViewById(R.id.add_to_fridge_icon);
+            fridgeLikeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(fridgeIconOn){
+                        fridgeLikeButton.setImageResource(R.mipmap.fridge_icon_off);
+                        fridgeIconOn = false;
+                        recipeSets.remove(mTitleTextView.getText().toString());
+                    } else {
+                        fridgeLikeButton.setImageResource(R.mipmap.fridge_icon_on);
+                        fridgeIconOn = true;
+//                        editor.putStringSet("Recipe", newHighScore);
+                        recipeSets.add(mTitleTextView.getText().toString());
+                    }
+                    Log.i(LOG_TAG, recipeSets.toString());
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(Lobby.this, RecipeLobby.class);
+                    /**
+                     * RecipeHolder constructor gets called first to return a view - happens in OnCreateViewHolder;
+                     * then Adapter calls onBindViewHolder that gives us the current recipe. However, we could never
+                     * have a view onscreen until it is created and bound so this dependency is fine
+                     *
+                     */
+                    i.putExtra(BUNDLE, currBundle);
+                    startActivity(i);
+                }
+            });
+        }
+
+        public void bindView(OneBundle bundle) {
+            currBundle = bundle;
+            mTitleTextView.setText(bundle.getTitle());
+            for(String recipe: recipeSets){
+                Log.i(LOG_TAG, "current reciple in list: " + recipe + "title : " + mTitleTextView.getText().toString());
+                if(recipe.equals(mTitleTextView.getText().toString())){
+                    fridgeLikeButton.setImageResource(R.mipmap.fridge_icon_on);
+                    fridgeIconOn = true;
+                }
+            }
+        }
+    }
+
+    private class BundlesAdapter extends RecyclerView.Adapter<BundlesHolder> {
+
+        private List<OneBundle> mBundlesList;
+
+        public BundlesAdapter(List<OneBundle> bundles) {
+            mBundlesList = bundles;
+        }
+
+        @Override
+        public BundlesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(Lobby.this);
+            View view = layoutInflater.inflate(R.layout.activity_recipe_lobby_item, parent, false);
+            return new BundlesHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(BundlesHolder holder, int position) {
+            OneBundle bundle = mBundlesList.get(position);
+            holder.bindView(bundle);
+        }
+
+        @Override
+        public int getItemCount() {
+            return mBundlesList.size();
+        }
     }
 
     private void setUpActivityDrawer(Toolbar myToolbar) {
         mMonths = getResources().getStringArray(R.array.drawer_menu);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerList = (ListView) findViewById(android.R.id.list);
 
         // Set the adapter for the list view
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1
@@ -174,13 +288,13 @@ public class Lobby extends AppCompatActivity {
     /** Swaps fragments in the main content view */
     private void selectItem(int position) {
 
-        if(position == 0) startActivity(new Intent(Lobby.this, MainActivity.class));
-        if(position == 1){
+        if(position == 4) startActivity(new Intent(Lobby.this, MainActivity.class));
+        if(position == 0){
             identityManager.signOut();
             // Start the sign-in activity. Do not finish this activity to allow the user to navigate back.
             startActivity(new Intent(this, SignInActivity.class));
         }
-        if(position == 2) startActivity(new Intent(this, RecipeLobby.class));
+        if(position == 1) startActivity(new Intent(this, BundlesLobby.class));
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);

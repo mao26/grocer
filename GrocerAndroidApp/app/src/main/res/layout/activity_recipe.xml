@@ -24,19 +24,31 @@
         />
 
     <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:text="This view should show a description of what it will
+        look like when you finish making this recipe. It will also have pictures
+        showing how yummy your food will look :)"
+    android:textSize="10sp"
+    android:textStyle="bold"
+    />
+
+    <LinearLayout
+        android:id="@+id/cook_now_button_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Content description"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:id="@+id/recipeview_listview"/>
-
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/image_view_chef_cooking"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prep Now"/>
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

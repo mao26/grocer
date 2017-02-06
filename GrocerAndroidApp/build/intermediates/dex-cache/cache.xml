@@ -160,7 +160,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="dcb0ab0908a8bca79259c8a998f9194e056b2a1f">
+        sha1="dcdc5335d7d77e7fcccd0bfd6ca685b7406a17f0">
         <dex dex="/Users/mario_oliver93/Documents/Grocer/GrocerAndroidApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c89144571577d2183080c35ad1d8436ffced19e9/classes.dex" />
     </item>
     <item
@@ -340,7 +340,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="83473c5ef49179d11d4f77833feda0f76051743d">
+        sha1="536ce3c2d960413be2b6c8b06ee047d8eaa3b7a6">
         <dex dex="/Users/mario_oliver93/Documents/Grocer/GrocerAndroidApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_7748fbe385984253023f2bb22480287ae890c92c/classes.dex" />
     </item>
     <item

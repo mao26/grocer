@@ -43,6 +43,11 @@ public class EggBundle extends OneBundle {
             "Hard Boiled Eggs", "Soft Boiled Eggs", "Sunny Side Up Eggs", "Scrambled Eggs"
     };
 
+    private String[] prepInstructionsForHardBoiledEggs = {
+            "Take out the number of eggs you want to cook!", "Fill up pot with water up to a height that covers the eggs by 1 inch.",
+            "Bring a pot of water to a boil over high heat",
+    };
+
     private Integer[] ingThumbs = {
             R.mipmap.egg_tn, R.mipmap.butter_tn,
             R.mipmap.milk_tn,
@@ -59,7 +64,7 @@ public class EggBundle extends OneBundle {
         //do the same thing for the eggs package that you are about to create
         for(int i = 0; i < titles.length; i++) {
             Integer recipeThumb = mThumbIds[i];
-            onePackage_Basics.add(new Recipe(titles[i], recipeThumb, ingredients, ingThumbs));
+            onePackage_Basics.add(new Recipe(titles[i], recipeThumb, ingredients, ingThumbs, prepInstructionsForHardBoiledEggs));
         }
         return onePackage_Basics;
     }

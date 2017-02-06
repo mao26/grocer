@@ -30,9 +30,10 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name="com.mysampleapp.Application"
-
+        android:hardwareAccelerated="false"
         >
-        <activity android:name=".Lobby"/>
+        <activity android:name=".Lobby"
+                  android:hardwareAccelerated="true"/>
         <activity android:name=".UserProfile"
                   android:parentActivityName=".Lobby"/>
         <activity android:name=".RecipeLobby"
@@ -41,6 +42,10 @@
                   android:parentActivityName=".RecipeLobby"/>
         <activity android:name=".BundlesLobby"
                   android:parentActivityName=".Lobby"/>
+        <activity android:name=".CookNowActivity"
+                  android:parentActivityName=".PrepNowActivity"/>
+        <activity android:name=".PrepNowActivity"
+                  android:parentActivityName=".RecipeActivity"/>
 
         <activity
             android:name=".SplashActivity"

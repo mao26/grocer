@@ -1,6 +1,8 @@
 package com.mysampleapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +30,22 @@ public class RecipeActivity extends AppCompatActivity{
     private Recipe currRecipe;
     private String[] ingTitles;
     private Integer[] ingThumbnails;
+    AnimationDrawable rocketAnimation;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        rocketAnimation.stop();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
+        ImageView image = (ImageView) findViewById(R.id.image_view_chef_cooking);
+        image.setBackgroundResource(R.drawable.prep_now_chef);
+        rocketAnimation = (AnimationDrawable) image.getBackground();
+        rocketAnimation.start();
 
         currRecipe = (Recipe) getIntent().getSerializableExtra(RECIPE);
         ingTitles = currRecipe.getIngredients();
@@ -41,48 +55,19 @@ public class RecipeActivity extends AppCompatActivity{
         gridview.setLayoutManager(new GridLayoutManager(RecipeActivity.this, 3));
         gridview.setAdapter(new RecipeGridViewAdapter());
 
-        RecyclerView listview = (RecyclerView) findViewById(R.id.recipeview_listview);
-        listview.setLayoutManager(new LinearLayoutManager(RecipeActivity.this));
-        listview.setAdapter(new RecipeLinearViewAdapter());
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
-    private class RecipeLinearViewHolder extends RecyclerView.ViewHolder{
-
-        private TextView tv_title;
-
-        //changed the View itemview out of the constructor because I'm inflating a view
-        public RecipeLinearViewHolder(ViewGroup container) {
-            super(getLayoutInflater().inflate(android.R.layout.simple_list_item_1, container, false));
-
-            tv_title = (TextView) itemView;
-        }
-
-        public void bindView(String title) {
-            tv_title.setText(title);
-        }
-    }
-
-    private class RecipeLinearViewAdapter extends RecyclerView.Adapter<RecipeLinearViewHolder>{
-
-        @Override
-        public RecipeLinearViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new RecipeLinearViewHolder(parent);
-        }
-
-        @Override
-        public void onBindViewHolder(RecipeLinearViewHolder holder, int position) {
-            String title = ingTitles[position];
-            holder.bindView(title);
-        }
-
-        @Override
-        public int getItemCount() {
-            return ingTitles.length;
-        }
+        LinearLayout cookNowButton = (LinearLayout) findViewById(R.id.cook_now_button_container);
+        cookNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(RecipeActivity.this, PrepNowActivity.class);
+                i.putExtra(RECIPE, currRecipe);
+                startActivity(i);
+            }
+        });
     }
 
     private class RecipeGridViewHolder extends RecyclerView.ViewHolder{
